@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest'
-import { add } from "../utils/math"
+import { add } from '../utils/math'
 
 test('should add numbers', (t) => {
   expect(add(0)).toBe(0)

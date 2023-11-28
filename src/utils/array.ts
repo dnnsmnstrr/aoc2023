@@ -21,7 +21,7 @@ export function sortByKey(values: any[], key: string) {
 
 export const splitLines = (input: string, splitter = '\n', trim = true) => {
   const splitLines = input.split(splitter)
-  const trimmedLines = splitLines.map((line) => trim ? line.trim() : line)
+  const trimmedLines = splitLines.map((line) => (trim ? line.trim() : line))
   const filteredLines = trimmedLines.filter(Boolean)
   return filteredLines
 }
