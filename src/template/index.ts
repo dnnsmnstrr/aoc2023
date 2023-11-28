@@ -1,22 +1,33 @@
 import run from "aocrunner"
+import { splitLines } from "../utils/index.js"
 
-const parseInput = (rawInput: string) => rawInput
+const parseInput = (rawInput) => splitLines(rawInput)
 
-const part1 = (rawInput: string) => {
+const part1 = (rawInput) => {
   const input = parseInput(rawInput)
 
-  return
+  const result = ''
+  return String(result)
 }
 
-const part2 = (rawInput: string) => {
+const part2 = (rawInput) => {
   const input = parseInput(rawInput)
 
-  return
+  const result = ''
+  return String(result)
 }
+
+const exampleInput = `
+
+`
 
 run({
   part1: {
     tests: [
+      {
+        input: exampleInput,
+        expected: "",
+      },
       // {
       //   input: ``,
       //   expected: "",
@@ -26,6 +37,10 @@ run({
   },
   part2: {
     tests: [
+      {
+        input: exampleInput,
+        expected: "",
+      },
       // {
       //   input: ``,
       //   expected: "",
@@ -34,5 +49,5 @@ run({
     solution: part2,
   },
   trimTestInputs: true,
-  onlyTests: false,
+  onlyTests: true,
 })
