@@ -1,0 +1,39 @@
+import { expect, test } from 'vitest'
+import { sorting, splitIntoChunks, splitLines } from "../utils/array"
+
+test('should sort numbers ascending', () => {
+  expect([5, 4, 3, 2, 1].sort(sorting.ascending)).toStrictEqual([1, 2, 3, 4, 5])
+  expect([5, 1, 4, 2, 3].sort(sorting.ascending)).toStrictEqual([1, 2, 3, 4, 5])
+  expect([1, -1, 0].sort(sorting.ascending)).toStrictEqual([-1, 0, 1])
+})
+
+test('should sort numbers descending', () => {
+  expect([1, 2, 3].sort(sorting.descending)).toStrictEqual([3, 2, 1])
+  expect([1, 4, 2, 3].sort(sorting.descending)).toStrictEqual([4, 3, 2, 1])
+})
+
+
+test('should sort strings', () => {
+  expect(['a', 'b', 'c'].sort(sorting.alphabetically)).toStrictEqual(['a', 'b', 'c'])
+  expect(['c', 'b', 'a'].sort(sorting.alphabetically)).toStrictEqual(['a', 'b', 'c'])
+  expect(['a', 'c', 'b'].sort(sorting.alphabetically)).toStrictEqual(['a', 'b', 'c'])
+})
+
+test('should split array into chunks', () => {
+  expect(splitIntoChunks([1, 2, 3, 4, 5], 2)).toStrictEqual([[1, 2], [3, 4], [5]])
+  expect(splitIntoChunks([1, 2, 3, 4, 5, 6, 7, 8, 9], 3)).toStrictEqual([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+  expect(splitIntoChunks([1, 2, 3, 4, 5], 5)).toStrictEqual([[1, 2, 3, 4, 5]])
+  expect(splitIntoChunks([1, 2, 3, 4, 5], 6)).toStrictEqual([[1, 2, 3, 4, 5]])
+})
+
+test('should split lines', () => {
+  expect(splitLines('')).toStrictEqual([])
+  expect(splitLines(`a`)).toStrictEqual(['a'])
+  expect(splitLines(`a
+  b`)).toStrictEqual(['a', 'b'])
+  expect(splitLines(`
+  a
+  b
+  c
+  `)).toStrictEqual(['a', 'b', 'c'])
+})
