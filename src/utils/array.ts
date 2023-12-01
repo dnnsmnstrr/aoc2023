@@ -19,11 +19,26 @@ export function sortByKey(values: any[], key: string) {
   })
 }
 
-export const splitLines = (input: string, splitter = '\n', trim = true) => {
-  const splitLines = input.split(splitter)
-  const trimmedLines = splitLines.map((line) => (trim ? line.trim() : line))
-  const filteredLines = trimmedLines.filter(Boolean)
-  return filteredLines
+/**
+ * @typedef {Object} SplitOptions
+ * @property {string|false} [delimiter='\n'] - a delimiter to split the input by (false will omit the splitting and return the entire input)
+ * @property {funcion(string, number, string[]): *|false} [mapper=Number] - a function that will be used to map the splitted input (false will omit the mapping and return the splitted input)
+ */
+interface SplitOptions<T> {
+  delimiter?: string;
+  trim: boolean;
+  mapper?: ((e: string, i: number, a: string[]) => T) | false;
+}
+
+export const splitLines = <T>(input: string, options: SplitOptions<T> = { trim: true }) => {
+  let resultLines = input.split(options?.delimiter ?? '\n')
+  if (options?.trim) {
+    const trimmedLines = resultLines.map((line) => line.trim())
+    const filteredLines = trimmedLines.filter(Boolean)
+    resultLines = filteredLines
+  }
+  const mapper = options?.mapper
+  return mapper === false ? resultLines : resultLines.map((...args) => mapper?.(...args) ?? args[0])
 }
 
 export const splitIntoChunks = (array: Array<any>, chunkSize: number) => {

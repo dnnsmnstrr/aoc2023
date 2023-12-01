@@ -44,3 +44,31 @@ test('should split lines', () => {
   `),
   ).toStrictEqual(['a', 'b', 'c'])
 })
+
+test('should split lines with options', () => {
+  const multipleLines = `
+    a
+    b
+    c
+  `
+  expect(splitLines(multipleLines, { trim: true })).toStrictEqual(['a', 'b', 'c'])
+
+  expect(splitLines(`a,b,c`, { delimiter: ',' })).toStrictEqual(['a', 'b', 'c'])
+  expect(splitLines(`a, b,c `, { delimiter: ',', trim: true})).toStrictEqual(['a', 'b', 'c'])
+})
+
+test('should support trim option for splitLines', () => {
+  expect(splitLines(' ')).toStrictEqual([]) // trims by default
+  expect(splitLines(' ', { trim: true })).toStrictEqual([])
+  expect(splitLines(`a `, { trim: false })).toStrictEqual(['a '])
+})
+
+test('should allow passing mapper function in splitLines options', () => {
+  const multipleLines = `
+    1
+    2
+    3
+  `
+  const mapper = (value) => Number(value) + 1
+  expect(splitLines(multipleLines, { trim: true, mapper })).toStrictEqual([2,3,4])
+})
