@@ -6,3 +6,7 @@ export const splitInHalf = (value: string) => {
 }
 
 export const isUpperCase = (value: string) => /^[A-Z]*$/.test(value)
+
+export function isNumeric(value: string){
+  return /^\d+$/.test(value);
+}
