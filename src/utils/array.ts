@@ -26,13 +26,13 @@ export function sortByKey(values: any[], key: string) {
  */
 interface SplitOptions<T> {
   delimiter?: string;
-  trim: boolean;
+  disableTrim?: boolean;
   mapper?: ((e: string, i: number, a: string[]) => T) | false;
 }
 
-export const splitLines = <T>(input: string, options: SplitOptions<T> = { trim: true }) => {
+export const splitLines = <T>(input: string, options: SplitOptions<T>) => {
   let resultLines = input.split(options?.delimiter ?? '\n')
-  if (options?.trim) {
+  if (!options?.disableTrim) {
     const trimmedLines = resultLines.map((line) => line.trim())
     const filteredLines = trimmedLines.filter(Boolean)
     resultLines = filteredLines
@@ -47,4 +47,8 @@ export const splitIntoChunks = (array: Array<any>, chunkSize: number) => {
     chunks.push(array.slice(i, i + chunkSize))
   }
   return chunks
+}
+
+export function hasDuplicates<T>(array: Array<T>) {
+    return (new Set(array)).size !== array.length;
 }
