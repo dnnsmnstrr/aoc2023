@@ -12,6 +12,7 @@ To fetch inputs / send solutions, an `AOC_SESSION_KEY` is required in the `.env`
 ## Solutions
 
 - [Reddit Megathreads](https://www.reddit.com/r/adventofcode/wiki/archives/solution_megathreads/2023/)
+- <https://github.com/deafpolygon/advent-of-code>
 
 <!--SOLUTIONS-->
 
