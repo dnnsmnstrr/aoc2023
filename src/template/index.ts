@@ -1,17 +1,19 @@
 import run from "aocrunner"
 import { splitLines } from "../utils/index.js"
 
-const parseInput = (rawInput) => splitLines(rawInput)
+function mapper(line: string) {
+  return line
+}
 
 const part1 = (rawInput) => {
-  const input = parseInput(rawInput)
+  const input = splitLines(rawInput, { mapper })
 
   const result = ''
   return String(result)
 }
 
 const part2 = (rawInput) => {
-  const input = parseInput(rawInput)
+  const input = splitLines(rawInput, { mapper})
 
   const result = ''
   return String(result)

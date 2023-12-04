@@ -30,7 +30,7 @@ interface SplitOptions<T> {
   mapper?: ((e: string, i: number, a: string[]) => T) | false;
 }
 
-export const splitLines = <T = string>(input: string, options: SplitOptions<T>): T[] => {
+export const splitLines = <T = string>(input: string, options?: SplitOptions<T>): T[] => {
   let resultLines = input.split(options?.delimiter ?? '\n')
   if (!options?.disableTrim) {
     const trimmedLines = resultLines.map((line) => line.trim())
