@@ -12,13 +12,13 @@
           "777064944368",
           "5046"
         ],
-        "time": 1.090344
+        "time": 1.10086
       },
       "part2": {
         "solved": true,
         "result": "55614",
         "attempts": [],
-        "time": 3.45928
+        "time": 3.510102
       }
     },
     {
@@ -45,27 +45,29 @@
           "9743964",
           "9556213"
         ],
-        "time": 17.551894
+        "time": 19.736089
       },
       "part2": {
         "solved": false,
         "result": "",
         "attempts": [],
-        "time": 12.947403
+        "time": 12.798578
       }
     },
     {
       "part1": {
-        "solved": false,
-        "result": null,
+        "solved": true,
+        "result": "18619",
         "attempts": [],
-        "time": null
+        "time": 2.116077
       },
       "part2": {
-        "solved": false,
-        "result": null,
-        "attempts": [],
-        "time": null
+        "solved": true,
+        "result": "8063216",
+        "attempts": [
+          "516861"
+        ],
+        "time": 1.91145
       }
     },
     {

@@ -30,15 +30,15 @@ interface SplitOptions<T> {
   mapper?: ((e: string, i: number, a: string[]) => T) | false;
 }
 
-export const splitLines = <T>(input: string, options: SplitOptions<T>) => {
+export const splitLines = <T = string>(input: string, options: SplitOptions<T>): T[] => {
   let resultLines = input.split(options?.delimiter ?? '\n')
   if (!options?.disableTrim) {
     const trimmedLines = resultLines.map((line) => line.trim())
     const filteredLines = trimmedLines.filter(Boolean)
     resultLines = filteredLines
   }
-  const mapper = options?.mapper
-  return mapper === false ? resultLines : resultLines.map((...args) => mapper?.(...args) ?? args[0])
+  const mapper = options?.mapper || (<T>(value): T => value)
+  return resultLines.map<T>((...args) => mapper(...args))
 }
 
 export const splitIntoChunks = (array: Array<any>, chunkSize: number) => {

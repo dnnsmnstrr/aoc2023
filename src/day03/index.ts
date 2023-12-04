@@ -32,9 +32,15 @@ function checkLine(line: string, lineIndex: number, lines: Array<string>): numbe
       const nextSymbol = chars[index + 1] && !isNumeric(chars[index + 1]) && chars[index + 1] !== '.'
       if (previousSymbol || nextSymbol || hasAdjacentSymbol) {
         isPartNumber = true
+        if (index === (chars.length - 1)) {
+          partNumbers.push(parseInt(currentNumberString))
+        }
       }
     } else if (char !== '.') {
       previousSymbol = true
+      if (index === chars.length - 1) {
+        partNumbers.push(parseInt(currentNumberString))
+      }
 
     } else { // is period
       if (isPartNumber) {
@@ -80,14 +86,18 @@ const exampleInput = `
 run({
   part1: {
     tests: [
-      {
-        input: exampleInput,
-        expected: "4361",
-      },
       // {
-      //   input: ``,
-      //   expected: "",
+      //   input: exampleInput,
+      //   expected: '4361',
       // },
+      // {
+      //   input: `123`,
+      //   expected: '0',
+      // },
+      {
+        input: `123*`,
+        expected: '123',
+      },
     ],
     solution: part1,
   },
@@ -95,7 +105,7 @@ run({
     tests: [
       {
         input: exampleInput,
-        expected: "",
+        expected: '',
       },
       // {
       //   input: ``,
