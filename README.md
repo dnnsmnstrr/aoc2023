@@ -7,12 +7,19 @@
 
 # 🎄 Advent of Code 2023 🎄
 
+I'm trying to use TypeScript this year. Let's see how far I make it.
 ## Setup
 To fetch inputs / send solutions, an `AOC_SESSION_KEY` is required in the `.env`
 ## Solutions
 
+If I'm totally stuck, I'll look for help/inspiration and focus on typing my solutions in a way that makes sense to me.
+
 - [Reddit Megathreads](https://www.reddit.com/r/adventofcode/wiki/archives/solution_megathreads/2023/)
+
+### Helpful Repositories
 - <https://github.com/deafpolygon/advent-of-code>
+- <https://github.com/CodingAP/advent-of-code/tree/main/aoc/puzzles/2023>
+- <https://github.com/delventhalz/advent-of-code-2023/tree/main/lib>
 
 <!--SOLUTIONS-->
 

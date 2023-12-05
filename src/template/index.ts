@@ -13,7 +13,7 @@ const part1 = (rawInput) => {
 }
 
 const part2 = (rawInput) => {
-  const input = splitLines(rawInput, { mapper})
+  const input = splitLines(rawInput, { mapper })
 
   const result = ''
   return String(result)
