@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest'
-import { sorting, splitIntoChunks, splitLines } from '../utils/array'
+import { makeMatrix, sorting, splitIntoChunks, splitLines } from '../utils/array'
 
 test('should sort numbers ascending', () => {
   expect([5, 4, 3, 2, 1].sort(sorting.ascending)).toStrictEqual([1, 2, 3, 4, 5])
@@ -46,11 +46,7 @@ test('should split lines', () => {
 })
 
 test('should split lines with options', () => {
-  const multipleLines = `
-    a
-    b
-    c
-  `
+  const multipleLines = 'a\nb\nc'
   expect(splitLines(multipleLines, { trim: true })).toStrictEqual(['a', 'b', 'c'])
 
   expect(splitLines(`a,b,c`, { delimiter: ',' })).toStrictEqual(['a', 'b', 'c'])
@@ -59,8 +55,8 @@ test('should split lines with options', () => {
 
 test('should support trim option for splitLines', () => {
   expect(splitLines(' ')).toStrictEqual([]) // trims by default
-  expect(splitLines(' ', { trim: true })).toStrictEqual([])
-  expect(splitLines(`a `, { trim: false })).toStrictEqual(['a '])
+  expect(splitLines(' ', { disableTrim: false })).toStrictEqual([])
+  expect(splitLines(`a `, { disableTrim: true })).toStrictEqual(['a '])
 })
 
 test('should allow passing mapper function in splitLines options', () => {
@@ -71,4 +67,18 @@ test('should allow passing mapper function in splitLines options', () => {
   `
   const mapper = (value) => Number(value) + 1
   expect(splitLines(multipleLines, { trim: true, mapper })).toStrictEqual([2,3,4])
+})
+
+test('should split grid of text into matrix', () => {
+  const multipleLines = `
+    123
+    456
+    789
+  `
+  const matrix = [
+    ['1', '2', '3'],
+    ['4', '5', '6'],
+    ['7', '8', '9']
+  ]
+  expect(splitLines(multipleLines, { mapper: makeMatrix() })).toStrictEqual(matrix)
 })

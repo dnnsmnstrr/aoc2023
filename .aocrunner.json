@@ -45,13 +45,13 @@
           "9743964",
           "9556213"
         ],
-        "time": 23.386994
+        "time": 160.156504
       },
       "part2": {
-        "solved": false,
-        "result": "",
+        "solved": true,
+        "result": "72514855",
         "attempts": [],
-        "time": 12.68368
+        "time": 19.376475
       }
     },
     {

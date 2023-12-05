@@ -41,6 +41,10 @@ export const splitLines = <T = string>(input: string, options?: SplitOptions<T>)
   return resultLines.map<T>((...args) => mapper(...args))
 }
 
+export const  makeMatrix = (delimiter: string = '') => (line: string) => {
+  return line.split(delimiter)
+}
+
 export const splitIntoChunks = (array: Array<any>, chunkSize: number) => {
   const chunks = []
   for (let i = 0; i < array.length; i += chunkSize) {

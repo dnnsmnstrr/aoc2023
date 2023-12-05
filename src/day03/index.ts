@@ -1,5 +1,5 @@
 import run from "aocrunner"
-import { add, isNumeric, splitLines } from "../utils/index.js"
+import { add, isNumeric, makeMatrix, splitLines } from "../utils/index.js"
 
 function checkForSymbol(index: number, lines: Array<string>) {
   const relevantSlices = lines.map(line => line ? line.slice(index ? index - 1 : index, index + 2) : '')
@@ -108,13 +108,52 @@ function checkForGears(line: string, lineIndex: number, lines: Array<string>): n
   couldBeGear = false
   return partNumbers
 }
+
 const part2 = (rawInput) => {
-  const input = splitLines<Array<number>>(rawInput, { mapper: checkForGears })
-  console.log(input)
-  // const result = input.reduce((sum, gearRatio) => {
-  //   return sum + (gearRatio)
-  // }, 0)
-  const result = add(...input.flat())
+  const grid = splitLines(rawInput, { mapper: makeMatrix() })
+  let gears: Record<string, Array<number>> = {}
+
+  grid.forEach((line, y) => {
+    let currentNumber = ''
+    let checkingForNumber = false
+    let gearPosition = ''
+
+    line.forEach((char, x) => {
+      const isNumber = isNumeric(char)
+      const isEndOfLine = x === line.length - 1
+      if (isNumber && !checkingForNumber) {
+        checkingForNumber = true;
+        currentNumber = '';
+        gearPosition = null;
+      }
+
+      if ((isEndOfLine || !isNumber) && checkingForNumber) {
+          if (gearPosition) gears[gearPosition].push(parseInt(currentNumber + (isNumber ? char : '')));
+          checkingForNumber = false;
+      }
+
+      if (checkingForNumber) {
+        currentNumber += char;
+        for (let j = -1; j <= 1; j++) {
+          for (let i = -1; i <= 1; i++) {
+            if (i == 0 && j == 0) continue;
+            if (y + j < 0 || y + j >= grid.length || x + i < 0 || x + i >= grid[y].length) continue;
+
+            const char = grid[y + j][x + i];
+            if (char == '*') {
+              gearPosition = `${x + i},${y + j}`;
+              if (!gears[gearPosition]) gears[gearPosition] = [];
+            }
+          }
+        }
+      }
+    })
+  })
+
+  const gearRatios = Object.values(gears).filter(gearValues => gearValues.length === 2)
+  const result = gearRatios.reduce((sum, [a, b]) => {
+    return sum + (a * b)
+  }, 0)
   return String(result)
 }
 
@@ -159,29 +198,45 @@ run({
   },
   part2: {
     tests: [
-      // {
-      //   input: exampleInput,
-      //   expected: '467835',
-      // },
       {
-        input: `
-    12.......*..
-    +.........34
-    .......-12..
-    ..78........
-    ..*....60...
-    78..........
-    .......23...
-    ....90*12...
-    ............
-    2.2......12.
-    .*.........*
-    1.1.......56`,
-        expected: `6756`,
+        input: exampleInput,
+        expected: '467835',
       },
+    //   {
+    //     input: `
+    // 12.......*..
+    // +.........34
+    // .......-12..
+    // ..78........
+    // ..*....60...
+    // 78..........
+    // .......23...
+    // ....90*12...
+    // ............
+    // 2.2......12.
+    // .*.........*
+    // 1.1.......56`,
+    //     expected: `6756`,
+    //   },
+    //   {
+    //     input: `
+    //   12.......*..
+    //   +.........34
+    //   .......-12..
+    //   ..78........
+    //   ..*....60...
+    //   78.........9
+    //   .5.....23..$
+    //   8...90*12...
+    //   ............
+    //   2.2......12.
+    //   .*.........*
+    //   1.1..503+.56`,
+    //     expected: `6756`
+    //   }
     ],
     solution: part2,
   },
   trimTestInputs: true,
-  onlyTests: true,
+  // onlyTests: true,
 })
