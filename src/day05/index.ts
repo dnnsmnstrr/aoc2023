@@ -1,9 +1,5 @@
 import run from "aocrunner"
-import { sorting, splitLines } from "../utils/index.js"
-
-function mapper(line: string) {
-  return line
-}
+import { sorting, splitIntoChunks, splitLines } from "../utils/index.js"
 
 const part1 = (rawInput) => {
   const input = splitLines(rawInput, { delimiter: '\n\n'})
@@ -13,44 +9,81 @@ const part1 = (rawInput) => {
     }
     return seedNumbers
   }, [])
-  // console.log(seeds)
 
   const almanac = input.slice(1).map(rawMap => {
     const mapLines = splitLines(rawMap)
     const name = mapLines[0].replace(' map:', '')
     const [source, target] = name.split('-to-')
     const ranges = mapLines.slice(1).map(line => line.split(/[ ]+/).map(Number))
-    console.log(ranges)
     return {name, source, target, ranges}
   })
-  // console.log(almanac)
   const locationNumbers = seeds.map(seed => {
-    console.log('processing seed ' + seed)
     const steps = [seed]
     almanac.forEach(map => {
+      let foundMatchingRange = false
       map.ranges.forEach(range => {
         const lastStep = steps[steps.length - 1]
         const [destination, source, length] = range
         const difference = source - destination
         const isWithinRange = lastStep >= source && lastStep <= source + length
-        if (isWithinRange) {
+        if (isWithinRange && !foundMatchingRange) {
           steps.push(lastStep - difference)
+          foundMatchingRange = true
         }
       })
     })
-    console.log('steps:', steps)
     return steps[steps.length - 1]
   })
-  // const sortedLocationNumbers = locationNumbers.sort(sorting.ascending)[1]
-  const result = locationNumbers.sort(sorting.ascending)[1]
+  const result = locationNumbers.sort(sorting.ascending)[0]
   return String(result)
 }
 
 const part2 = (rawInput) => {
-  const input = splitLines(rawInput, { mapper })
+  const input = splitLines(rawInput, { delimiter: '\n\n' })
+  const seedRanges = input[0]
+    .split(': ')[1]
+    .split(' ')
+    .reduce((seedNumbers, potentialSeed) => {
+      if (potentialSeed !== '') {
+        seedNumbers.push(Number(potentialSeed))
+      }
+      return seedNumbers
+    }, [])
+  const seedRangePairs = splitIntoChunks(seedRanges, 2)
+  const almanac = input.slice(1).map((rawMap) => {
+    const mapLines = splitLines(rawMap)
+    const name = mapLines[0].replace(' map:', '')
+    const [source, target] = name.split('-to-')
+    const ranges = mapLines.slice(1).map((line) => line.split(/[ ]+/).map(Number))
+    return { name, source, target, ranges }
+  })
 
-  const result = ''
-  return String(result)
+  let lowestLocationNumber = 0
+  seedRangePairs.forEach((seedRange, index) => {
+    const [start, length] = seedRange
+    console.log('checking range of ', length, ' seeds, starting at ', start)
+    console.log(seedRangePairs.length - index, ' pairs to go')
+    for (let currentSeed = start; currentSeed < start + length - 1; currentSeed++) {
+        let lastStep = currentSeed
+        almanac.forEach((map) => {
+          let foundMatchingRange = false
+          map.ranges.forEach((range) => {
+            const [destination, source, length] = range
+            const difference = source - destination
+            const isWithinRange = lastStep >= source && lastStep <= source + length
+            if (isWithinRange && !foundMatchingRange) {
+              lastStep = lastStep - difference
+              foundMatchingRange = true
+            }
+          })
+        })
+        if (!lowestLocationNumber || lastStep < lowestLocationNumber) {
+          lowestLocationNumber = lastStep
+        }
+    }
+  })
+
+  return String(lowestLocationNumber)
 }
 
 const exampleInput = `
@@ -103,11 +136,11 @@ run({
     tests: [
       {
         input: exampleInput,
-        expected: "",
+        expected: "46",
       },
     ],
     solution: part2,
   },
   trimTestInputs: true,
-  onlyTests: true,
+  // onlyTests: true,
 })

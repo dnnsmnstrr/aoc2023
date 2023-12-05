@@ -45,13 +45,13 @@
           "9743964",
           "9556213"
         ],
-        "time": 160.156504
+        "time": 20.168782
       },
       "part2": {
         "solved": true,
         "result": "72514855",
         "attempts": [],
-        "time": 19.376475
+        "time": 5.791085
       }
     },
     {
@@ -72,16 +72,18 @@
     },
     {
       "part1": {
-        "solved": false,
-        "result": null,
-        "attempts": [],
-        "time": null
+        "solved": true,
+        "result": "173706076",
+        "attempts": [
+          "1074695405"
+        ],
+        "time": 4.16681
       },
       "part2": {
-        "solved": false,
-        "result": null,
+        "solved": true,
+        "result": "11611182",
         "attempts": [],
-        "time": null
+        "time": 32934268.727515
       }
     },
     {
