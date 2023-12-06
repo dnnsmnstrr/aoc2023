@@ -28,7 +28,7 @@ If I'm totally stuck, I'll look for help/inspiration and focus on typing my solu
 [![Day](https://badgen.net/badge/03/%E2%98%85%E2%98%85/green)](src/day03)
 [![Day](https://badgen.net/badge/04/%E2%98%85%E2%98%85/green)](src/day04)
 ![Day](https://badgen.net/badge/05/%E2%98%86%E2%98%86/gray)
-![Day](https://badgen.net/badge/06/%E2%98%86%E2%98%86/gray)
+[![Day](https://badgen.net/badge/06/%E2%98%85%E2%98%85/green)](src/day06)
 ![Day](https://badgen.net/badge/07/%E2%98%86%E2%98%86/gray)
 ![Day](https://badgen.net/badge/08/%E2%98%86%E2%98%86/gray)
 ![Day](https://badgen.net/badge/09/%E2%98%86%E2%98%86/gray)
@@ -95,9 +95,9 @@ Both parts: 3.504ms
 
 ```
 Day 03
-Time part 1: -
-Time part 2: 6.294ms
-Both parts: 6.294ms
+Time part 1: 160.157ms
+Time part 2: 19.376ms
+Both parts: 179.533ms
 ```
 
 ```
@@ -116,9 +116,9 @@ Both parts: -
 
 ```
 Day 06
-Time part 1: -
-Time part 2: -
-Both parts: -
+Time part 1: 0.102ms
+Time part 2: 3030.682ms
+Both parts: 3030.783ms
 ```
 
 ```
@@ -255,8 +255,8 @@ Both parts: -
 ```
 
 ```
-Total stars: 8/50
-Total time: 17.931ms
+Total stars: 10/50
+Total time: 3221.953ms
 ```
 
 <!--/RESULTS-->
