@@ -14,7 +14,6 @@ const part1 = (rawInput) => {
     acc[map.node] = map
     return acc
   }, {})
-  console.log(instructions, mapsById)
   let currentNode = 'AAA'
   let stepCount = 0
   while (currentNode !== 'ZZZ') {
@@ -23,7 +22,6 @@ const part1 = (rawInput) => {
       stepCount += 1
     }
   }
-  // const result = ''
   return String(stepCount)
 }
 
@@ -53,17 +51,6 @@ const part2 = (rawInput) => {
         stepCount += 1
       }
     }
-    // for (const instruction of instructions) {
-    //   for (let pos = 0; pos < ghostPositions.length; pos++) {
-    //     const currentPos = ghostPositions[pos];
-    //     console.log('currentPos', currentPos, 'step', stepCount)
-
-    //     // if (!currentPos.endsWith('Z')) {
-    //       ghostPositions[pos] = mapsById[currentPos][instruction]
-    //     // }
-    //   }
-    //   stepCount += 1
-    // }
     return stepCount
   })
 
