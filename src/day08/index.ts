@@ -27,6 +27,12 @@ const part1 = (rawInput) => {
   return String(stepCount)
 }
 
+const gcd = (a: number, b: number) => {
+  while (b > 0) [a, b] = [b, a % b]
+  return a
+}
+const lcm = (a: number, b: number) => (a * b) / gcd(a, b)
+
 const part2 = (rawInput) => {
   const [instructions, mapLines] = splitLines(rawInput, { delimiter: '\n\n' })
   const maps = splitLines(mapLines, { mapper })
@@ -37,25 +43,32 @@ const part2 = (rawInput) => {
   }, {})
 
   let ghostPositions = startingNodeMaps.map((map) => map.node)
-  console.log('ghost count: ', ghostPositions)
-  let stepCount = 0
 
-  while (!ghostPositions.every(position => position.endsWith('Z'))) {
-    console.log('ghostPositions', ghostPositions)
-
-    for (const instruction of instructions) {
-      for (let pos = 0; pos < ghostPositions.length; pos++) {
-        const currentPos = ghostPositions[pos];
-        console.log('currentPos', currentPos, 'step', stepCount)
-
-        // if (!currentPos.endsWith('Z')) {
-          ghostPositions[pos] = mapsById[currentPos][instruction]
-        // }
+  const steps = ghostPositions.map(position => {
+    let stepCount = 0
+    let currentNode = position
+    while (!currentNode.endsWith('Z')) {
+      for (const instruction of instructions) {
+        currentNode = mapsById[currentNode][instruction]
+        stepCount += 1
       }
-      stepCount += 1
     }
-  }
-  return String(stepCount)
+    // for (const instruction of instructions) {
+    //   for (let pos = 0; pos < ghostPositions.length; pos++) {
+    //     const currentPos = ghostPositions[pos];
+    //     console.log('currentPos', currentPos, 'step', stepCount)
+
+    //     // if (!currentPos.endsWith('Z')) {
+    //       ghostPositions[pos] = mapsById[currentPos][instruction]
+    //     // }
+    //   }
+    //   stepCount += 1
+    // }
+    return stepCount
+  })
+
+  const result = steps.reduce((n, x) => lcm(x, n), 1)
+  return String(result)
 }
 
 const exampleInput = `
