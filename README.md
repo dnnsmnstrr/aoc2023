@@ -30,8 +30,8 @@ If I'm totally stuck, I'll look for help/inspiration and focus on typing my solu
 [![Day](https://badgen.net/badge/05/%E2%98%85%E2%98%85/green)](src/day05)
 [![Day](https://badgen.net/badge/06/%E2%98%85%E2%98%85/green)](src/day06)
 [![Day](https://badgen.net/badge/07/%E2%98%85%E2%98%85/green)](src/day07)
-[![Day](https://badgen.net/badge/08/%E2%98%85%E2%98%85/green)](src/day08)
-![Day](https://badgen.net/badge/09/%E2%98%86%E2%98%86/gray)
+[![Day](https://badgen.net/badge/08/%E2%98%85%E2%98%86/yellow)](src/day08)
+[![Day](https://badgen.net/badge/09/%E2%98%85%E2%98%85/green)](src/day09)
 ![Day](https://badgen.net/badge/10/%E2%98%86%E2%98%86/gray)
 ![Day](https://badgen.net/badge/11/%E2%98%86%E2%98%86/gray)
 ![Day](https://badgen.net/badge/12/%E2%98%86%E2%98%86/gray)
@@ -130,16 +130,16 @@ Both parts: 17.878ms
 
 ```
 Day 08
-Time part 1: 16.28ms
-Time part 2: 11.355ms
-Both parts: 27.635ms
+Time part 1: 7.167ms
+Time part 2: -
+Both parts: 7.167ms
 ```
 
 ```
 Day 09
-Time part 1: -
-Time part 2: -
-Both parts: -
+Time part 1: 2.714ms
+Time part 2: 283.98ms
+Both parts: 286.694ms
 ```
 
 ```
@@ -255,8 +255,8 @@ Both parts: -
 ```
 
 ```
-Total stars: 16/50
-Total time: 32936953.289ms
+Total stars: 17/50
+Total time: 32937219.514ms
 ```
 
 <!--/RESULTS-->
