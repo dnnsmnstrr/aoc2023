@@ -41,7 +41,7 @@ export const splitLines = <T = string>(input: string, options?: SplitOptions<T>)
   return resultLines.map<T>((...args) => mapper(...args))
 }
 
-export const  makeMatrix = (delimiter: string = '') => (line: string) => {
+export const  makeMatrix = (delimiter: string = '') => (line: string): string[] => {
   return line.split(delimiter)
 }
 
