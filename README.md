@@ -33,7 +33,7 @@ If I'm totally stuck, I'll look for help/inspiration and focus on typing my solu
 [![Day](https://badgen.net/badge/08/%E2%98%85%E2%98%85/green)](src/day08)
 [![Day](https://badgen.net/badge/09/%E2%98%85%E2%98%85/green)](src/day09)
 [![Day](https://badgen.net/badge/10/%E2%98%85%E2%98%86/yellow)](src/day10)
-![Day](https://badgen.net/badge/11/%E2%98%86%E2%98%86/gray)
+[![Day](https://badgen.net/badge/11/%E2%98%85%E2%98%86/yellow)](src/day11)
 ![Day](https://badgen.net/badge/12/%E2%98%86%E2%98%86/gray)
 ![Day](https://badgen.net/badge/13/%E2%98%86%E2%98%86/gray)
 ![Day](https://badgen.net/badge/14/%E2%98%86%E2%98%86/gray)
@@ -130,9 +130,9 @@ Both parts: 17.878ms
 
 ```
 Day 08
-Time part 1: 7.167ms
-Time part 2: 7.992ms
-Both parts: 15.159ms
+Time part 1: 4.173ms
+Time part 2: 8.251ms
+Both parts: 12.424ms
 ```
 
 ```
@@ -144,16 +144,16 @@ Both parts: 5.8ms
 
 ```
 Day 10
-Time part 1: 1466.714ms
+Time part 1: 1096.828ms
 Time part 2: -
-Both parts: 1466.714ms
+Both parts: 1096.828ms
 ```
 
 ```
 Day 11
-Time part 1: -
+Time part 1: 9.947ms
 Time part 2: -
-Both parts: -
+Both parts: 9.947ms
 ```
 
 ```
@@ -255,8 +255,8 @@ Both parts: -
 ```
 
 ```
-Total stars: 19/50
-Total time: 32938413.326ms
+Total stars: 20/50
+Total time: 32938050.653ms
 ```
 
 <!--/RESULTS-->

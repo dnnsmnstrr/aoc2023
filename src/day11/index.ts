@@ -1,8 +1,8 @@
-import run from "aocrunner"
-import { makeMatrix, splitLines } from "../utils/index.js"
+import run from 'aocrunner'
+import { makeMatrix, splitLines } from '../utils/index.js'
 
 function containsGalaxy(line: string[]) {
-  return line.some(field => field === '#')
+  return line.some((field) => field === '#')
 }
 
 const part1 = (rawInput) => {
@@ -10,7 +10,7 @@ const part1 = (rawInput) => {
   for (let rowIndex = 0; rowIndex < input.length; rowIndex++) {
     const row = input[rowIndex]
     if (!containsGalaxy(row)) {
-      input.splice(rowIndex,0, [].fill('.', 0, row.length))
+      input.splice(rowIndex, 0, [].fill('.', 0, row.length))
       rowIndex++
     }
   }
@@ -25,14 +25,30 @@ const part1 = (rawInput) => {
       }
     }
     if (column.length === input.length) {
-      input.forEach(row => row.splice(columnIndex, 0, '.'))
+      input.forEach((row) => row.splice(columnIndex, 0, '.'))
       columnIndex++
     }
-
   }
   // console.log(input[0].length)
 
-  const result = ''
+  const galaxyPositions = []
+  for (let rowIndex = 0; rowIndex < input.length; rowIndex++) {
+    for (let columnIndex = 0; columnIndex < input[rowIndex].length; columnIndex++) {
+      if (input[rowIndex][columnIndex] === '#') {
+        galaxyPositions.push({ row: rowIndex, column: columnIndex })
+      }
+    }
+  }
+  let totalDistance = 0
+  for (let i = 0; i < galaxyPositions.length - 1; i++) {
+    for (let j = i + 1; j < galaxyPositions.length; j++) {
+      const distance =
+        Math.abs(galaxyPositions[i].row - galaxyPositions[j].row) +
+        Math.abs(galaxyPositions[i].column - galaxyPositions[j].column)
+      totalDistance += distance
+    }
+  }
+  const result = totalDistance
   return String(result)
 }
 
@@ -61,7 +77,7 @@ run({
     tests: [
       {
         input: exampleInput,
-        expected: "374",
+        expected: '374',
       },
     ],
     solution: part1,
@@ -70,11 +86,11 @@ run({
     tests: [
       {
         input: exampleInput,
-        expected: "",
+        expected: '',
       },
     ],
     solution: part2,
   },
   trimTestInputs: true,
-  onlyTests: true,
+  // onlyTests: true,
 })
